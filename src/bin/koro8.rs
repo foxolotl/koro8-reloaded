@@ -29,7 +29,7 @@ fn main() {
         Box::new(keyboard),
         Box::new(buzzer),
         Box::new(rng),
-        11
+        9
     );
     cpu.load(&rom);
     cpu.run();
