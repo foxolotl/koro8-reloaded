@@ -47,22 +47,22 @@ pub struct CPU<'t> {
     rom: &'t[u8]
 }
 
-pub fn new<'t>(
-    display: &'t mut dyn Display,
+pub fn new(
+    display: &mut dyn Display,
     keyboard: Box<dyn Keyboard>,
     buzzer: Box<dyn Buzzer>,
     rng: Box<dyn rand::RngCore>,
     clock_multiplier: u64
-) -> CPU<'t> {
+) -> CPU {
     let cycles_per_second = clock_multiplier * TIMER_HZ;
     let cycle_time_nanos = 1_000_000_000 / cycles_per_second;
     CPU {
-        display: display,
-        keyboard: keyboard,
-        buzzer: buzzer,
-        rng: rng,
-        clock_multiplier: clock_multiplier,
-        cycle_time_nanos: cycle_time_nanos,
+        display,
+        keyboard,
+        buzzer,
+        rng,
+        clock_multiplier,
+        cycle_time_nanos,
         cycle_sleep_millis: std::cmp::max(1, cycle_time_nanos / 1_000_000),
         next_cycle_deadline: 0,
         regs: Regs::new(),
@@ -118,10 +118,10 @@ impl <'t> CPU<'t> {
     fn step(&mut self) {
         if self.cycles % self.clock_multiplier == 0 {
             if self.regs.dt != 0 {
-                self.regs.dt = self.regs.dt - 1
+                self.regs.dt -= 1
             }
             if self.regs.st != 0 {
-                self.regs.st = self.regs.st - 1
+                self.regs.st -= 1
             }
         }
         let instr = self.heap.read_instr(self.regs.pc);

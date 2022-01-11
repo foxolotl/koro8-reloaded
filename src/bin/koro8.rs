@@ -3,7 +3,7 @@ use sdl2::{image::LoadTexture};
 fn main() {
     let args = std::env::args().skip(1).collect::<Vec<String>>();
     let rom_path = args.first().expect("no arguments given");
-    let rom = std::fs::read(rom_path).expect(&format!("no such file: {}", rom_path));
+    let rom = std::fs::read(rom_path).unwrap_or_else(|_| panic!("no such file: {}", rom_path));
 
     let sdl = sdl2::init().unwrap();
     let canvas = koro8::peripherals::sdl::display::Display::create_canvas(&sdl).unwrap();

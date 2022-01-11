@@ -26,9 +26,9 @@ impl <'a> Display<'a> {
         background: Texture<'a>
     ) -> Option<Display<'a>> {
         let display = Display {
-            canvas: canvas,
-            pixel: pixel,
-            background: background,
+            canvas,
+            pixel,
+            background,
             pixels: [false;PIXELS]
         };
         Some(display)

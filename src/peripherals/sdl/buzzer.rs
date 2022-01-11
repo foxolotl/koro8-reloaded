@@ -24,8 +24,8 @@ impl Buzzer {
         let buzzer = Buzzer {
             _audio: audio,
             _mixer: mixer,
-            chunks: chunks,
-            rng: rng
+            chunks,
+            rng
         };
         Some(buzzer)
     }

@@ -27,11 +27,11 @@ impl Keyboard {
             keymap.insert(*keycode, key);
         }
         let keyboard = Keyboard {
-            event_pump: event_pump,
+            event_pump,
             key_states: [false;NUM_KEYS],
             reset: false,
             power_off: false,
-            keymap: keymap,
+            keymap,
             polling_interval: Duration::from_millis(10)
         };
         Some(keyboard)
@@ -76,7 +76,7 @@ impl crate::arch::Keyboard for Keyboard {
                 None => std::thread::sleep(self.polling_interval)
             }
         }
-        return 0
+        0
     }
 
     fn reset_signal(&mut self) -> bool {
