@@ -19,3 +19,7 @@ The koro8 key map is QWER to 123C, ASDF to 456D, ZXCV to 789E, and 1234 to A0BF.
 Most roms use keys 2, 4, 6 and 8 for directional input, which map to W, A, D and X respectively.
 
 To reset the loaded rom, press ESC. To quit, just close the window.
+
+## See (and hear) koro8 in action
+
+https://user-images.githubusercontent.com/96795329/149030942-4b39be55-201e-47bf-99c8-3dde37c07a3f.mp4
